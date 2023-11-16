@@ -1,5 +1,7 @@
 def run():
     import streamlit as st
+
+
     from stlib import load_predictions
     import pandas as pd
     st.markdown("""
@@ -22,13 +24,13 @@ def run():
         preview_data = data.head(5).copy()
         st.markdown('<i>Preview dos Dados Inseridos:</i>', unsafe_allow_html = True)
         st.dataframe(preview_data)
-        st.button('Executar', type = 'primary', on_click = load_predictions.predictions())
+        if st.button('Executar', type = 'primary'):
+            load_predictions.predictions(data)
     else:
         
         st.markdown("""<div data-testid="stMarkdownContainer" class="st-emotion-cache-q8sbsg e1nzilvr5">
                     <p>Ver estrutura dos dados e/ou baixar amostra:</p></div> <p></p>""", unsafe_allow_html = True)
         with open('sample_data.csv', 'r') as sample_data:
-
             st.download_button(label = 'Baixar arquivo de amostra',
                             data = sample_data,
                             file_name = 'sample_data.csv',

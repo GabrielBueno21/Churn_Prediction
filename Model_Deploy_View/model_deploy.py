@@ -45,6 +45,7 @@ with st.sidebar:
     # Adiciona o link para o Streamlit
     st.markdown(f'<div style="width: 150px; margin: auto;"><a href="https://www.linkedin.com/in/gabriel-bueno-guimaraes/" target="_blank"><img src="./app/static/linkedin.png" alt="Click me" width="150px"></a></div>', unsafe_allow_html=True)
 
-match menu_selected:
-    case 'Início': home.run()
-    case 'Analisar Clientes': one_customer.run()
+if menu_selected == 'Início':
+    home.run()
+else:
+    one_customer.run()

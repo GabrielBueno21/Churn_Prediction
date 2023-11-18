@@ -31,11 +31,10 @@ def predictions(data):
         df_results = df_results.drop(columns=['index'])
 
         df_results['Previsão de Churn'] = df_results['Proba_Abandono'].apply(lambda x: 'Abandono' if x > 0.5 else 'Permanencia')
-        df_results['Probabilidade'] = df_results.apply(lambda row: row['Proba_Abandono'] if row['Proba_Abandono'] > row['Proba_Permanencia'] else row['Proba_Permanencia'], axis=1)
         df_results = df_results.drop(columns = ['Proba_Abandono', 'Proba_Permanencia'])
-        return st.dataframe(df_results)
+        return st.dataframe(df_results, use_container_width  = True)
     else:
-        return st.error(f'O arquivo inserido não possui as seguintes colunas{np.setxor1d(data.columns.to_list(), std_columns)}')
+        return st.error(f'O arquivo que voce forneceu possui algumas colunas ausentes :sad:. Envie um novo ')
     
 
 
